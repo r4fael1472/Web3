@@ -4,6 +4,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CadastrarDiscente
@@ -32,8 +33,9 @@ public class CadastrarUsuario extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getParameter("nome");
-        String usuario = request.getParameter("cpf");
-        String senha = request.getParameter("matricula");
+        String cpf = request.getParameter("cpf");
+        String matricula = request.getParameter("matricula");
+        response.setContentType("text/html");
         try {
             Thread.sleep(300000);
         }
@@ -41,8 +43,13 @@ public class CadastrarUsuario extends HttpServlet {
             Thread.currentThread().interrupt();
         }
 
-        response.setContentType("text/html");
-        response.getWriter().write("Resposta após 30 segundos");
+        HttpSession session = request.getSession();
+        session.setAttribute("nome", nome);
+        session.setAttribute("cpf", cpf);
+        session.setAttribute("matricula", matricula);
+
+        response.sendRedirect("main.jsp");
+
     }
 
 }

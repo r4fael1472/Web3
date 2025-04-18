@@ -12,9 +12,11 @@
         <label>
             <input type="text" name="nome">
         </label>
+        <br>
         <label>
             <input type="text" name="cpf">
         </label>
+        <br>
         <label>
             <input type="text" name="matricula">
         </label>
