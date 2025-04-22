@@ -25,7 +25,16 @@ public class CadastrarUsuario extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        String matricula = request.getParameter("matricula");
+        response.setContentType("text/html");
+        HttpSession session = request.getSession();
+        session.setAttribute("nome", nome);
+        session.setAttribute("cpf", cpf);
+        session.setAttribute("matricula", matricula);
+        response.sendRedirect("main.jsp?nome="+nome);
+
     }
 
     /**
