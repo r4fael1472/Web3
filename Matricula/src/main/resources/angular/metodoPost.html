@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </head>
 <body>
-$END$
+  <div ng-controller="controlador">
+    <div>
+      <form ng-submit="enviar()">
+          <label>Nome:</label>
+          <input type="text" ng-model="form.nome" required>
+          <label>Mensagem:</label>
+          <input type="text" ng-model="form.mensagem" required>
+          <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module('app', []);
+
+    app.controller('controlador', function($scope, $http) {
+      $scope.form = {}; // Dados do formulário
+
+      $scope.enviarDados = function() {
+        $http.post("http://NUMERO_IP:8000/mensagem.html", $scope.form)
+                .then(function(response) {
+                  $scope.msg = response.data;
+                });
+      };
+    });
+  </script>
+
+
+
+
+
 </body>
 </html>

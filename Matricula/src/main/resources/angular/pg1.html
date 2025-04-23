@@ -22,13 +22,6 @@
     </script>
 
 
-    <script>
-        var app = angular.module('app', []);
-        app.controller('controlador', function($scope, $http) {
-            $http.post("http://NUMERO_IP:8000/mensagem.html").then(function(response) {
-                    $scope.msg = response.data;
-                });
-        });
-    </script>
+
 </body>
 </html>
